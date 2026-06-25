@@ -1,0 +1,175 @@
+
+body {
+    
+    background:
+        linear-gradient(rgba(0, 0, 0, .70),
+            rgba(0, 0, 0, .70)),
+        url('https://t3.ftcdn.net/jpg/18/03/33/64/360_F_1803336455_ym9RfgcOtAzxKnLD5aM3uXgRTRBOz0vY.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+/* Estilos para celular */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
+
+/* HERO */
+
+.hero {
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 20px;
+
+    overflow: hidden;
+
+}
+
+/* CONTEÚDO */
+
+.hero-content {
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 900px;
+
+    text-align: center;
+
+    color: white;
+}
+
+/* TITULO */
+
+.hero-content h1 {
+    font-size: 95px;
+
+    line-height: 1;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 35px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, .18),
+        0 0 60px rgba(255, 255, 255, .08);
+}
+
+/* TEXTO */
+
+.hero-content p {
+    max-width: 700px;
+
+    margin: auto;
+
+    font-size: 24px;
+
+    line-height: 1.8;
+
+    opacity: .82;
+
+    letter-spacing: 2px;
+}
+
+/* BOTÃO */
+
+.hero-btn {
+    margin-top: 50px;
+
+    width: 280px;
+    height: 70px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: rgba(0, 0, 0, .637);
+     border: 1px solid rgba(255, 255, 255, .15);
+
+    color: rgb(255, 255, 255);
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    transition: .4s;
+}
+
+/* HOVER */
+
+.hero-btn:hover {
+
+    transform:
+        translateY(-5px) scale(1.04);
+
+    box-shadow:
+        0 0 20px rgba(71, 48, 48, 0.25),
+        0 0 60px rgba(255, 45, 45, 0.15);
+        
+}
+
+
+.bnt {
+    position: fixed;
+
+    top: 20px;
+    left: 20px;
+
+    z-index: 1000;
+
+    display: inline-block;
+
+    padding: 14px 30px;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    background: rgba(0, 0, 0, .637);
+
+    border: 1px solid rgba(255, 255, 255, .15);
+
+    color: white;
+
+    letter-spacing: 3px;
+
+    transition: .3s;
+
+    backdrop-filter: blur(10px);
+}
+
+.bnt:hover {
+    transform: scale(1.05);
+
+    background: rgba(255, 255, 255, .15);
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, .15);
+}

@@ -13,104 +13,124 @@ enterBtn.addEventListener("click", () => {
 
 });
 
-/* ESTRELAS */
-
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-
+function resize(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
 }
 
-resizeCanvas();
+resize();
+window.addEventListener("resize", resize);
 
-let stars = [];
+const stars = [];
 
-class Star {
+for(let i=0;i<150;i++){
+    stars.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*2,
+        s:Math.random()*2+0.5
+    });
+}
 
-    constructor() {
+function animate(){
 
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-        this.radius = Math.random() * 2;
+    ctx.fillStyle="white";
 
-        this.opacity = Math.random();
-
-        this.speed = Math.random() * 0.015;
-
-    }
-
-    draw() {
+    stars.forEach(star=>{
 
         ctx.beginPath();
-
-        ctx.arc(
-            this.x,
-            this.y,
-            this.radius,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
-
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = "white";
-
+        ctx.arc(star.x,star.y,star.r,0,Math.PI*2);
         ctx.fill();
 
-    }
+        star.y+=star.s;
 
-    update() {
-
-        this.opacity += this.speed;
-
-        if (this.opacity <= 0) {
-            this.speed = Math.abs(this.speed);
+        if(star.y>canvas.height){
+            star.y=-5;
+            star.x=Math.random()*canvas.width;
         }
 
-        if (this.opacity >= 1) {
-            this.speed = -Math.abs(this.speed);
-        }
-
-        this.draw();
-
-    }
-
-}
-
-function initStars() {
-
-    stars = [];
-
-    for (let i = 0; i < 250; i++) {
-        stars.push(new Star());
-    }
-
-}
-
-function animateStars() {
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    stars.forEach((star) => {
-        star.update();
     });
 
-    requestAnimationFrame(animateStars);
-
+    requestAnimationFrame(animate);
 }
 
-initStars();
-animateStars();
+animate();
+const elements = document.querySelectorAll('.gift-card, .info-card, h1, h2, p');
 
-window.addEventListener("resize", () => {
-
-    resizeCanvas();
-    initStars();
-
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.15
 });
+
+elements.forEach(el => {
+  el.classList.add('hidden');
+  observer.observe(el);
+});
+// PARTICULAS
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    d: Math.random() * 1
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+    ctx.fill();
+  });
+
+  move();
+}
+
+function move() {
+  particles.forEach(p => {
+    p.y += p.d;
+
+    if (p.y > canvas.height) {
+      p.y = 0;
+      p.x = Math.random() * canvas.width;
+    }
+  });
+}
+
+setInterval(draw, 30);
+
+// MAPA
+const modal = document.getElementById("mapModal");
+const mapCard = document.getElementById("mapCard");
+const close = document.getElementById("closeModal");
+
+mapCard.onclick = () => modal.style.display = "flex";
+close.onclick = () => modal.style.display = "none";
+
+// SOM (opcional simples)
+const btn = document.getElementById("soundBtn");
+
+btn.onclick = () => {
+  btn.innerText = btn.innerText === "🔊 SOM" ? "🔇 OFF" : "🔊 SOM";
+};
